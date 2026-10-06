@@ -101,7 +101,6 @@ ul#nav li {
     padding-bottom: 40px;
 }
 
-/* Keeps the footer at the bottom on short pages */
 body {
     display: flex;
     flex-direction: column;

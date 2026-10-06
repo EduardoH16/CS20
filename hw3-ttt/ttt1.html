@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TTT1</title>
+  <style>
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+    }
+
+    .square {
+        border: 2px solid black;
+        margin: 5px;
+        font-size: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .square:hover {
+        background: #b5efc5;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="board">
+        <div class="square">X</div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square">O</div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square">X</div>
+    </div>
+</body>
+</html>

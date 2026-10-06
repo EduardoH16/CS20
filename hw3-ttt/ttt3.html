@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TTT3</title>
+  <style>
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        justify-content: center;
+    }
+    .square {
+        border: 2px solid #000000;
+        margin: 5px;
+        font-size: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .square:hover {
+        background: #b5efc5;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .turn-display {
+        border: 2px solid #000000;
+        margin: 20px auto;
+        font-size: 50px;
+        text-align: center;
+        width: 480px;
+    }
+
+    .win-con{
+        border: 2px solid #000000;
+        margin: 20px auto;
+        font-size: 50px;
+        text-align: center;
+        width: 480px;
+    }
+
+    #start-button{
+        border: 2px solid #000000;
+        margin: 20px auto;
+        font-size: 30px;
+        text-align: center;
+        width: 200px;
+    }
+
+  </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe Game</h1>
+    <div class="turn-display">Player X's Turn</div>
+    <div class="board">
+        <script>
+            const NUM_SQUARES = 9;
+            for (i=0; i<NUM_SQUARES; i++)
+            {
+                id = "sq"+i;
+                document.write( "<div class='square' id='" + id + "'></div>" );
+            }
+        </script>
+    </div>
+    <div class="win-con">Get 3 in a row to win.</div>
+    <div style="text-align: center;">
+        <button id="start-button">Start Game</button>
+    </div>
+
+    <script>
+        var currPlayer = "X";
+        var gameOn = false;
+
+        // event handler for squares
+        function handleClick(event)
+        {
+            if (!gameOn)
+            {
+                return;
+            }
+
+            var square = event.target;
+
+            // don't do anything if square is filled
+            if (square.innerHTML != "")
+            {
+                return;
+            }
+
+            square.innerHTML = currPlayer;
+
+            // alternate turns
+            if (currPlayer == "X")
+            {
+                currPlayer = "O";
+            }
+            else
+            {
+                currPlayer = "X";
+            }
+            document.querySelector(".turn-display").innerHTML = "Player " + currPlayer + "'s Turn";
+
+            // show square number popup
+            alert("#" + square.id.substring(2));
+        }
+
+        function startGame()
+        {
+            // erase contents
+            for (var j = 0; j < NUM_SQUARES; j++)
+            {
+                document.getElementById("sq" + j).innerHTML = "";
+            }
+
+            // random starting player
+            if (Math.random() < 0.5)
+            {
+                currPlayer = "X";
+            }
+            else
+            {
+                currPlayer = "O";
+            }
+            document.querySelector(".turn-display").innerHTML = "Player " + currPlayer + "'s Turn";
+            
+            // starts game
+            gameOn = true;
+        }
+
+        // add handler to every square
+        for (i = 0; i < NUM_SQUARES; i++)
+        {
+            document.getElementById("sq" + i).addEventListener("click", handleClick);
+        }
+
+        document.getElementById("start-button").addEventListener("click", startGame);
+    </script>
+</body>
+</html>

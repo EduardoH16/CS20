@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TTT2</title>
+  <style>
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        justify-content: center;
+    }
+    .square {
+        border: 2px solid #000000;
+        margin: 5px;
+        font-size: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .square:hover {
+        background: #b5efc5;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .turn-display {
+        border: 2px solid #000000;
+        margin: 20px auto;
+        font-size: 50px;
+        text-align: center;
+        width: 480px;
+    }
+
+    .win-con{
+        border: 2px solid #000000;
+        margin: 20px auto;
+        font-size: 50px;
+        text-align: center;
+        width: 480px;
+    }
+
+  </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe Game</h1>
+    <div class="turn-display">Player X's Turn</div>
+    <div class="board">
+        <script>
+            const NUM_SQUARES = 9;
+            for (i=0; i<NUM_SQUARES; i++)
+            {
+                id = "sq"+i;
+                document.write( "<div class='square' id='" + id + "'></div>" );
+            }
+            document.getElementById("sq2").innerHTML = "X";
+            document.getElementById("sq3").innerHTML = "O"
+        </script>
+    </div>
+    <div class="win-con">Get 3 in a row to win.</div>
+</body>
+</html>
