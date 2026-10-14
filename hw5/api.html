@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medford/Tufts Train</title>
+</head>
+<body>
+  <h1>Medford/Tufts Station (Green Line E)</h1>
+  <div id="result">Loading</div>
+
+  <script>
+    // mbta api data for the medford/tufts trains
+    var url = "https://api-v3.mbta.com/predictions?filter[stop]=place-mdftf";
+
+    fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        var predictions = json.data;
+        var trains = [];
+
+        // get departing and arriving times
+        for (var i = 0; i < predictions.length; i++) {
+          var attrs = predictions[i].attributes;
+          if (attrs.departure_time !== null) {
+            trains.push({ type: "Departing", time: new Date(attrs.departure_time) });
+          } else if (attrs.arrival_time !== null) {
+            trains.push({ type: "Arriving", time: new Date(attrs.arrival_time) });
+          }
+        }
+
+        // sort by soonest train
+        trains.sort(function (a, b) {
+          return a.time - b.time;
+        });
+
+        var output = "<ul>";
+        for (var j = 0; j < trains.length; j++) {
+          var clock = trains[j].time.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+          output += "<li>" + trains[j].type + " at " + clock + "</li>";
+        }
+        output += "</ul>";
+
+        document.getElementById("result").innerHTML = output;
+      })
+      .catch(function (error) {
+        document.getElementById("result").innerHTML = "Could not load train data.";
+      });
+  </script>
+</body>
+</html>

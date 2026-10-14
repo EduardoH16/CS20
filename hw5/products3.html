@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <select id="category"></select>
+  <button id="filter">Filter</button>
+  <div id="result"></div>
+
+  <script>
+    var products = [];
+
+    // reads JSON on page load
+    $.get("products.json", function (data) {
+      products = data;
+
+      var categories = [];
+      // loop through products and collect each category
+      for (var i = 0; i < products.length; i++) {
+        for (var j = 0; j < products[i].categories.length; j++) {
+          var category = products[i].categories[j];
+          // check if the category hasn't been added to the list yet
+          if (categories.indexOf(category) === -1) {
+            categories.push(category);
+          }
+        }
+      }
+
+      // add each category as an option in the filter button
+      var options = "";
+      for (var k = 0; k < categories.length; k++) {
+        options += "<option value='" + categories[k] + "'>" + categories[k] + "</option>";
+      }
+
+      document.getElementById("category").innerHTML = options;
+    });
+
+    // show names of products when category is clicked
+    $("#filter").click(function () {
+      var selected = document.getElementById("category").value;
+
+      var output = "";
+      for (var i = 0; i < products.length; i++) {
+        if (products[i].categories.indexOf(selected) !== -1) {
+          output += products[i].name + "<br>";
+        }
+      }
+
+      document.getElementById("result").innerHTML = output;
+    });
+  </script>
+</body>
+</html>

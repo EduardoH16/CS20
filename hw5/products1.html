@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Electronics</title>
+</head>
+<body>
+  <script>
+    // json assigned to global variable
+    var electronics_products = [
+      {
+        "name": "Wireless Headphones",
+        "description": "Bluetooth headphones with noise cancellation",
+        "price": 300,
+        "categories": ["audio", "wireless"]
+      },
+      {
+        "name": "Smart TV",
+        "description": "Smart TV with built-in apps and voice control",
+        "price": 450,
+        "categories": ["televisions", "home entertainment"]
+      },
+      {
+        "name": "Laptop",
+        "description": "Laptop with 16GB RAM and 512GB SSD",
+        "price": 800,
+        "categories": ["laptops", "work"]
+      },
+      {
+        "name": "Smartwatch",
+        "description": "Smartwatch with fitness tracker and heart rate monitor",
+        "price": 150.00,
+        "categories": ["wearables", "fitness"]
+      },
+      {
+        "name": "Bluetooth Speaker",
+        "description": "Bluetooth speaker with great sound quality",
+        "price": 90,
+        "categories": ["audio", "wireless"]
+      },
+      {
+        "name": "Gaming Keyboard",
+        "description": "RGB backlit mechanical keyboard",
+        "price": 140,
+        "categories": ["gaming", "keyboards"]
+      },
+      {
+        "name": "Gaming Mouse",
+        "description": "Wireless mouse with extra buttons",
+        "price": 70,
+        "categories": ["gaming", "mice"]
+      },
+      {
+        "name": "Web Cam",
+        "description": "Web camera with 4K video recording",
+        "price": 150,
+        "categories": ["cameras", "video"]
+      },
+      {
+        "name": "Power Bank",
+        "description": "Fast-charging power bank",
+        "price": 40,
+        "categories": ["chargers", "mobile"]
+      },
+      {
+        "name": "Tablet",
+        "description": "Tablet with stylus for note-taking",
+        "price": 300,
+        "categories": ["tablets", "work"]
+      }
+    ];
+
+    // convert to string
+    var electronics_string = JSON.stringify(electronics_products);
+    document.write(electronics_string);
+  </script>
+</body>
+</html>

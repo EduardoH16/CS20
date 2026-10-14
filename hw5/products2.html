@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    .name {
+      font-weight: bold;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+  <button id="show">Show Products</button>
+  <div id="result"></div>
+
+  <script>
+    $("#show").click(function () {
+      $.get("products.json", function (data) {
+        var products = data;
+
+        var output = "";
+        // loop through products and add their info to the output
+        for (var i = 0; i < products.length; i++) {
+          var product = products[i];
+          output += "<p>" +
+                  "<span class='name'>" + product.name + "</span><br>" +
+                  product.description + "<br>" +
+                  "Price: $" + product.price + "<br>" +
+                  "Categories: " + product.categories.join(", ") +
+                  "</p>";
+        }
+
+        document.getElementById("result").innerHTML = output;
+      });
+    });
+  </script>
+</body>
+</html>
